@@ -18,7 +18,6 @@ const task2: Task = {
   completed: false
 }
 
-
 const task3: Task = {
   id: 3,
   name: 'Go to the mechanic.',

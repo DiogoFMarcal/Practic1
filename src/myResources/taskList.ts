@@ -13,30 +13,35 @@ export class TaskList {
 
     //elimina la tarea con el ID especificado del arreglo de tareas
     removeTask(id: number) {
-        for (let i = 0; i < this.tasks.length; i++) {
-            if (this.tasks[i].id === id) {
-                this.tasks.splice(i, 1);
-                //rompe el ciclo porque ya se ha encontrado la task con el id pasado por parámetro
-                break;
+        let taskWithIdwasFound: boolean = false;
+
+        this.tasks.forEach((task) => {
+            if (task.id == id && !taskWithIdwasFound) {
+                const index = this.tasks.indexOf(task);
+                if (index != -1) {
+                    taskWithIdwasFound = true;
+                    this.tasks.splice(index, 1);
+                }
             }
-        }
+        });
     }
 
     //marca la tarea con el ID especificado como completa
     completeTask(id: number) {
-        for (let i = 0; i < this.tasks.length; i++) {
-            if (this.tasks[i].id === id) {
-                this.tasks[i].completed = true;
-                //rompe el ciclo porque ya se ha encontrado la task con el id pasado por parámetro
-                break;
+        let taskWithIdwasFound: boolean = false;
+
+        this.tasks.forEach((task) => {
+            if (task.id == id && !taskWithIdwasFound) {
+                taskWithIdwasFound = true;
+                task.completed = true;
             }
-        }
+        });
     }
 
     //imprime na consola a lista de tarefas, mostrando o seu ID, nome e se estão ou não concluídas.
     printTasks() {
-        for (let i = 0; i < this.tasks.length; i++) {
-            console.log(`Id: ${this.tasks[i].id} \nName: ${this.tasks[i].name} \nCompleted: ${this.tasks[i].completed}`);
-        }
+        this.tasks.forEach((task) => {
+            console.log(`Id: ${task.id} \nName: ${task.name} \nCompleted: ${task.completed}`);
+        });
     }
 }
